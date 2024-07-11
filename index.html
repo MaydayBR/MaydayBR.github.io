@@ -7,136 +7,52 @@
    <title>Personal Portfolio Website - Easy Tutorials</title>
    <link rel="stylesheet" href="style.css">
    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <i class="fa-solid fa-x" onclick="closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <h1>Bryce Mayday</h1>
-                <p>Software Developer / Programmer</p>
-            </div>
-        </div>
-    </div>
+    <!-- Existing content of index.html -->
 
-    <!--------about-------------->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/user.png">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p>I am a second year student at MSU who is majoring in computer science. I am a student who loves to learn and embraces being a beginner.
-                         I'm never afraid to ask for help and believe that there is always more to be learned. I value asking questions and see it as a key part 
-                         of the learning process. There are always new ideas and perspectives on ways to solve problems. I enjoy challenges and view them as opportunities to grow and learn. 
-                         I love collaborating with others and learning from their experiences and insights. </p>
-
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>languages</span><br>python,java,javascript</li>
-                            <li><span>webscraping</span><br>Became proficient in using beautiful soup through side projects.</li>
-                            <li><span>langchain</span><br>Utilized LangChain to develop and deploy conversational AI applications.</li>
-                            <li><span>RAG</span><br>Used RAG techniques to enhance the accuracy and relevance of AI-generated content.</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li><span>Michigan roots gardening</span><br>landscaper </li>
-                            <li><span>Artas Italian</span><br>host/busser</li>
-                            <!--
-                            <li><span>third2</span><br>description</li>
-                            -->
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>Michigan State Universy</span><br>Bachelors degree 2027.</li>
-                            <!--
-                            <li><span>second3</span><br>description</li>
-                            <li><span>third3</span><br>description</li>
-                            -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!---------------------portfolio----------->
-    <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Work</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/work-1.png">
-                    <div class="layer">
-                        <h3> Social Media App</h3>
-                        <p> the app connects you to people around the world </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-2.png">
-                    <div class="layer">
-                        <h3> Music App</h3>
-                        <p> it's a music app </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-3.png">
-                    <div class="layer">
-                        <h3> Online Shopping App</h3>
-                        <p> Shop online </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="btn">See more</a>
+    <!-- Add this section at the bottom -->
+    <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff;">
+        <h2>Ask a Question</h2>
+        <form id="gpt-form">
+            <label for="yt-url">YouTube URL:</label><br>
+            <input type="text" id="yt-url" name="yt-url" required><br><br>
+            <label for="user-question">Your Question:</label><br>
+            <input type="text" id="user-question" name="user-question" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="gpt-response">
+            <!-- Response will be displayed here -->
         </div>
     </div>
 
     <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
+        $(document).ready(function() {
+            $('#gpt-form').on('submit', function(event) {
+                event.preventDefault();
+                const ytUrl = $('#yt-url').val();
+                const userQuestion = $('#user-question').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:5000/generate-response',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        yt_url: ytUrl,
+                        user_question: userQuestion
+                    }),
+                    success: function(response) {
+                        $('#gpt-response').html('<p><strong>Summary:</strong> ' + response.summary + '</p><p><strong>Response:</strong> ' + response.response + '</p>');
+                    },
+                    error: function(error) {
+                        $('#gpt-response').html('<p>An error occurred. Please try again later.</p>');
+                    }
+                });
+            });
+        });
     </script>
 
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
-
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
-
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
-    </script>
+    <!-- Existing scripts of index.html -->
 </body>
 </html>
