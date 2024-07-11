@@ -146,7 +146,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://127.0.0.1:5000/generate-response',
+                    url: 'http://127.0.0.1:5000/generate-response', // Ensure this points to the correct port where gpt.py is running
                     contentType: 'application/json',
                     data: JSON.stringify({
                         yt_url: ytUrl,
@@ -169,7 +169,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://127.0.0.1:5000/generate-news-response',
+                    url: 'http://127.0.0.1:5001/generate-response', // Ensure this points to the correct port where app.py is running
                     contentType: 'application/json',
                     data: JSON.stringify({
                         news_url: newsUrl,
@@ -184,9 +184,7 @@
                 });
             });
         });
-    </script>
 
-    <script>
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
 
@@ -200,9 +198,7 @@
             event.currentTarget.classList.add("active-link");
             document.getElementById(tabname).classList.add("active-tab");
         }
-    </script>
 
-    <script>
         var sidemenu = document.getElementById("sidemenu");
 
         function openmenu() {
