@@ -106,21 +106,38 @@
     </div>
 
     <!-- Add this section at the bottom -->
-    <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px auto;">
-        <h2 style="font-size: 18px;">Ask a Question</h2>
-        <form id="gpt-form">
-            <label for="yt-url" style="font-size: 14px;">YouTube URL:</label><br>
-            <input type="text" id="yt-url" name="yt-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-            <label for="user-question" style="font-size: 14px;">Your Question:</label><br>
-            <input type="text" id="user-question" name="user-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-            <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
-        </form>
-        <div id="gpt-response" style="margin-top: 20px;">
-            <!-- Response will be displayed here -->
+    <div class="widgets-container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px;">
+            <h2 style="font-size: 18px;">Ask a Question</h2>
+            <form id="gpt-form">
+                <label for="yt-url" style="font-size: 14px;">YouTube URL:</label><br>
+                <input type="text" id="yt-url" name="yt-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+                <label for="user-question" style="font-size: 14px;">Your Question:</label><br>
+                <input type="text" id="user-question" name="user-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+                <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
+            </form>
+            <div id="gpt-response" style="margin-top: 20px;">
+                <!-- Response will be displayed here -->
+            </div>
+        </div>
+
+        <div id="scrape-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px;">
+            <h2 style="font-size: 18px;">Scrape a Website</h2>
+            <form id="scrape-form">
+                <label for="news-url" style="font-size: 14px;">News URL:</label><br>
+                <input type="text" id="news-url" name="news-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+                <label for="scrape-question" style="font-size: 14px;">Your Question:</label><br>
+                <input type="text" id="scrape-question" name="scrape-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+                <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
+            </form>
+            <div id="scrape-response" style="margin-top: 20px;">
+                <!-- Response will be displayed here -->
+            </div>
         </div>
     </div>
 
     <script>
+        // GPT Form submission
         $(document).ready(function() {
             $('#gpt-form').on('submit', function(event) {
                 event.preventDefault();
@@ -140,6 +157,29 @@
                     },
                     error: function(error) {
                         $('#gpt-response').html('<p>An error occurred. Please try again later.</p>');
+                    }
+                });
+            });
+
+            // Scrape Form submission
+            $('#scrape-form').on('submit', function(event) {
+                event.preventDefault();
+                const newsUrl = $('#news-url').val();
+                const scrapeQuestion = $('#scrape-question').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:5000/generate-news-response',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        news_url: newsUrl,
+                        user_question: scrapeQuestion
+                    }),
+                    success: function(response) {
+                        $('#scrape-response').html('<p><strong>Response:</strong> ' + response.response + '</p>');
+                    },
+                    error: function(error) {
+                        $('#scrape-response').html('<p>An error occurred. Please try again later.</p>');
                     }
                 });
             });
