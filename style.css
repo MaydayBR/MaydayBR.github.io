@@ -306,3 +306,56 @@ nav .fas {
         margin-right: 20px;
     }
 }
+
+/* Widget CSS */
+#gpt-widget {
+    padding: 20px;
+    background-color: #222;
+    color: #fff;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#gpt-widget h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#gpt-widget form {
+    display: flex;
+    flex-direction: column;
+}
+
+#gpt-widget label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#gpt-widget input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#gpt-widget button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #ff004f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#gpt-widget button:hover {
+    background-color: #e60045;
+}
+
+#gpt-response {
+    margin-top: 20px;
+}
