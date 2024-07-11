@@ -113,19 +113,17 @@
     </div>
 
     <!-- Add this section at the bottom -->
-    <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff;">
-        <div class="container">
-            <h2>Ask a Question</h2>
-            <form id="gpt-form">
-                <label for="yt-url">YouTube URL:</label><br>
-                <input type="text" id="yt-url" name="yt-url" required><br><br>
-                <label for="user-question">Your Question:</label><br>
-                <input type="text" id="user-question" name="user-question" required><br><br>
-                <button type="submit">Submit</button>
-            </form>
-            <div id="gpt-response">
-                <!-- Response will be displayed here -->
-            </div>
+    <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px auto;">
+        <h2 style="font-size: 18px;">Ask a Question</h2>
+        <form id="gpt-form">
+            <label for="yt-url" style="font-size: 14px;">YouTube URL:</label><br>
+            <input type="text" id="yt-url" name="yt-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+            <label for="user-question" style="font-size: 14px;">Your Question:</label><br>
+            <input type="text" id="user-question" name="user-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
+            <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
+        </form>
+        <div id="gpt-response" style="margin-top: 20px;">
+            <!-- Response will be displayed here -->
         </div>
     </div>
 
