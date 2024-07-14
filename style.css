@@ -1,7 +1,19 @@
+/* Variables for easier theme management */
+:root {
+    --background-color: #080808;
+    --text-color: #fff;
+    --accent-color: #ff004f;
+    --font-family: 'Poppins', sans-serif;
+    --header-padding: 100px 0;
+    --header-text-font-size: 48px;
+    --header-subtext-font-size: 24px;
+}
+
+/* General Resets */
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-family);
     box-sizing: border-box;
 }
 
@@ -10,16 +22,17 @@ html {
 }
 
 body {
-    background: #080808;
-    color: #fff;
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
+/* Header Section */
 #header {
     width: 100%;
     background-image: url(images/blackbackground.png);
     background-size: cover;
     background-position: center;
-    padding: 100px 0; /* Adjust the padding as needed */
+    padding: var(--header-padding);
 }
 
 .container {
@@ -28,19 +41,20 @@ body {
 
 .header-text {
     text-align: center;
-    padding: 20px 0; /* Adjust the padding as needed */
+    padding: 20px 0;
 }
 
 .header-text h1 {
-    font-size: 48px; /* Adjust the font size as needed */
-    margin-bottom: 10px; /* Adjust the margin as needed */
+    font-size: var(--header-text-font-size);
+    margin-bottom: 10px;
 }
 
 .header-text p {
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-bottom: 0; /* Ensure there's no margin at the bottom */
+    font-size: var(--header-subtext-font-size);
+    margin-bottom: 0;
 }
 
+/* Navigation */
 nav {
     display: flex;
     align-items: center;
@@ -55,7 +69,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 18px;
     position: relative;
@@ -65,7 +79,7 @@ nav ul li a::after {
     content: '';
     width: 0;
     height: 3px;
-    background: #ff004f;
+    background: var(--accent-color);
     position: absolute;
     left: 0;
     bottom: -6px;
@@ -76,6 +90,7 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+/* About Section */
 #about {
     padding: 20px 0;
     color: #ababab;
@@ -103,7 +118,7 @@ nav ul li a:hover::after {
 .sub-title {
     font-size: 60px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .tab-titles {
@@ -123,7 +138,7 @@ nav ul li a:hover::after {
     content: '';
     width: 0;
     height: 3px;
-    background: #ff004f;
+    background: var(--accent-color);
     position: absolute;
     left: 0;
     bottom: -8px;
@@ -152,6 +167,7 @@ nav ul li a:hover::after {
     display: block;
 }
 
+/* Portfolio Section */
 #portfolio {
     padding: 50px 0;
 }
@@ -179,7 +195,7 @@ nav ul li a:hover::after {
 .layer {
     width: 100%;
     height: 0;
-    background: linear-gradient(rgba(0,0,0,0.6),#ff004f);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), var(--accent-color));
     border-radius: 10px;
     position: absolute;
     left: 0;
@@ -201,11 +217,11 @@ nav ul li a:hover::after {
 
 .layer a {
     margin-top: 20px;
-    color: #ff004f;
+    color: var(--accent-color);
     text-decoration: none;
     font-size: 18px;
     line-height: 60px;
-    background: #fff;
+    background: var(--text-color);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -220,24 +236,24 @@ nav ul li a:hover::after {
     height: 100%;
 }
 
+/* Button Styles */
 .btn {
     display: block;
     margin: 50px auto;
     width: fit-content;
-    border: 1px solid #ff004f;
+    border: 1px solid var(--accent-color);
     padding: 14px 50px;
     border-radius: 6px;
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color);
     transition: background 0.5s;
 }
 
 .btn:hover {
-    background: #ff004f;
+    background: var(--accent-color);
 }
 
-/*----------css for small screen-----------*/
-
+/* Responsive Design for Small Screens */
 nav .fas {
     display: none;
 }
@@ -262,7 +278,7 @@ nav .fas {
     }
 
     nav ul {
-        background: #ff004f;
+        background: var(--accent-color);
         position: fixed;
         top: 0;
         right: -200px;
@@ -305,37 +321,4 @@ nav .fas {
         font-size: 16px;
         margin-right: 20px;
     }
-}
-
-/* CSS for widgets container */
-.widgets-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px 0;
-}
-
-#scrape-widget, #gpt-widget {
-    padding: 20px;
-    background-color: #222;
-    color: #fff;
-    max-width: 400px;
-    margin: 20px;
-    border-radius: 10px;
-}
-
-#scrape-widget h2, #gpt-widget h2 {
-    font-size: 18px;
-}
-
-#scrape-widget input, #gpt-widget input {
-    width: 100%;
-    padding: 5px;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-#scrape-widget button, #gpt-widget button {
-    padding: 10px 20px;
-    font-size: 14px;
 }
