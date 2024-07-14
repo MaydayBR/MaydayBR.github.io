@@ -7,7 +7,6 @@
    <title>Personal Portfolio Website - Easy Tutorials</title>
    <link rel="stylesheet" href="style.css">
    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="header">
@@ -27,7 +26,6 @@
             </div>
         </div>
     </div>
-
     <!--------about-------------->
     <div id="about">
         <div class="container">
@@ -49,165 +47,29 @@
                     </div>
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li><span>languages</span><br>python, java, javascript</li>
-                            <li><span>webscraping</span><br>Became proficient in using Beautiful Soup through side projects.</li>
+                            <li><span>languages</span><br>python,java,javascript</li>
+                            <li><span>webscraping</span><br>Became proficient in using beautiful soup through side projects.</li>
                             <li><span>langchain</span><br>Utilized LangChain to develop and deploy conversational AI applications.</li>
                             <li><span>RAG</span><br>Used RAG techniques to enhance the accuracy and relevance of AI-generated content.</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
-                            <li><span>Michigan Roots Gardening</span><br>landscaper </li>
+                            <li><span>Michigan roots gardening</span><br>landscaper </li>
                             <li><span>Artas Italian</span><br>host/busser</li>
+                            <!--
+                            <li><span>third2</span><br>description</li>
+                            -->
                         </ul>
                     </div>
                     <div class="tab-contents" id="education">
                         <ul>
-                            <li><span>Michigan State University</span><br>Bachelor's degree 2027.</li>
+                            <li><span>Michigan State Universy</span><br>Bachelors degree 2027.</li>
+                            <!--
+                            <li><span>second3</span><br>description</li>
+                            <li><span>third3</span><br>description</li>
+                            -->
                         </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!---------------------portfolio----------->
-    <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Work</h1>
-            <div class="work-list">
-                <div class="work">
-                    <img src="images/work-1.png">
-                    <div class="layer">
-                        <h3> Social Media App</h3>
-                        <p> the app connects you to people around the world </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-2.png">
-                    <div class="layer">
-                        <h3> Music App</h3>
-                        <p> it's a music app </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work-3.png">
-                    <div class="layer">
-                        <h3> Online Shopping App</h3>
-                        <p> Shop online </p>
-                        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="btn">See more</a>
-        </div>
-    </div>
-
-    <!-- Add this section at the bottom -->
-    <div class="widgets-container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-        <div id="gpt-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px;">
-            <h2 style="font-size: 18px;">Ask a Question</h2>
-            <form id="gpt-form">
-                <label for="yt-url" style="font-size: 14px;">YouTube URL:</label><br>
-                <input type="text" id="yt-url" name="yt-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-                <label for="user-question" style="font-size: 14px;">Your Question:</label><br>
-                <input type="text" id="user-question" name="user-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-                <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
-            </form>
-            <div id="gpt-response" style="margin-top: 20px;">
-                <!-- Response will be displayed here -->
-            </div>
-        </div>
-
-        <div id="scrape-widget" style="padding: 20px; background-color: #222; color: #fff; max-width: 400px; margin: 20px;">
-            <h2 style="font-size: 18px;">Scrape a Website</h2>
-            <form id="scrape-form">
-                <label for="news-url" style="font-size: 14px;">News URL:</label><br>
-                <input type="text" id="news-url" name="news-url" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-                <label for="scrape-question" style="font-size: 14px;">Your Question:</label><br>
-                <input type="text" id="scrape-question" name="scrape-question" required style="width: 100%; padding: 5px; font-size: 14px;"><br><br>
-                <button type="submit" style="padding: 10px 20px; font-size: 14px;">Submit</button>
-            </form>
-            <div id="scrape-response" style="margin-top: 20px;">
-                <!-- Response will be displayed here -->
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // GPT Form submission
-        $(document).ready(function() {
-            $('#gpt-form').on('submit', function(event) {
-                event.preventDefault();
-                const ytUrl = $('#yt-url').val();
-                const userQuestion = $('#user-question').val();
-                
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://127.0.0.1:5000/generate-response', // Ensure this points to the correct port where gpt.py is running
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        yt_url: ytUrl,
-                        user_question: userQuestion
-                    }),
-                    success: function(response) {
-                        $('#gpt-response').html('<p><strong>Summary:</strong> ' + response.summary + '</p><p><strong>Response:</strong> ' + response.response + '</p>');
-                    },
-                    error: function(error) {
-                        $('#gpt-response').html('<p>An error occurred. Please try again later.</p>');
-                    }
-                });
-            });
-
-            // Scrape Form submission
-            $('#scrape-form').on('submit', function(event) {
-                event.preventDefault();
-                const newsUrl = $('#news-url').val();
-                const scrapeQuestion = $('#scrape-question').val();
-                
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://127.0.0.1:5001/generate-response', // Ensure this points to the correct port where app.py is running
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        news_url: newsUrl,
-                        user_question: scrapeQuestion
-                    }),
-                    success: function(response) {
-                        $('#scrape-response').html('<p><strong>Response:</strong> ' + response.response + '</p>');
-                    },
-                    error: function(error) {
-                        $('#scrape-response').html('<p>An error occurred. Please try again later.</p>');
-                    }
-                });
-            });
-        });
-
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-
-        var sidemenu = document.getElementById("sidemenu");
-
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
-
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
-    </script>
-</body>
-</html>
+	
