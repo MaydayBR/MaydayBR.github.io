@@ -212,8 +212,9 @@ nav ul li a:hover::after {
     text-align: center;
 }
 
+/* Removed the zoom-in effect on hover */
 .work:hover img {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
 }
 
 .work:hover .layer {
