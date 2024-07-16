@@ -175,6 +175,11 @@ nav ul li a:hover::after {
     flex: 1;
 }
 
+.work h3 {
+    margin-bottom: 10px;
+    color: #ff004f;
+}
+
 .btn {
     display: block;
     margin: 50px auto;
