@@ -158,35 +158,21 @@ nav ul li a:hover::after {
 
 .work {
     display: flex;
-    flex-direction: row; /* Align items in a row */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 20px; /* Add some margin at the bottom */
-    gap: 20px; /* Add some space between the image and the text */
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .work img {
-    flex: 1; /* Allow the image to take up available space */
-    max-width: 40%; /* Limit the max width of the image */
+    width: 100%;
+    max-width: 300px;
     border-radius: 10px;
     display: block;
-    transition: transform 0.5s;
+    margin-right: 20px;
 }
 
 .work p {
-    flex: 2; /* Allow the text to take up available space */
-    color: #ababab; /* Adjust text color if needed */
-}
-
-/* Removed the zoom-in effect on hover */
-.work:hover img {
-    /* transform: scale(1.1); */
-}
-
-.work:hover .layer {
-    height: 100%;
+    flex: 1;
 }
 
 .btn {
@@ -276,12 +262,11 @@ nav .fas {
     }
 
     .work {
-        flex-direction: column; /* Stack items in a column on small screens */
-        align-items: flex-start; /* Align items to the start */
+        flex-direction: column;
     }
 
     .work img {
-        max-width: 100%; /* Allow the image to take full width */
-        margin-bottom: 10px; /* Add some space at the bottom */
+        margin-bottom: 20px;
+        margin-right: 0;
     }
 }
