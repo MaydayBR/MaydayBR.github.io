@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible"="IE=edge">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Personal Portfolio Website - Easy Tutorials</title>
+   <title>Personal Portfolio Website - Bryce Mayday</title>
    <link rel="stylesheet" href="style.css">
    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -16,9 +16,9 @@
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <i class="fa-solid fa-x" onclick="closemenu()"></i>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
                 </ul>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
             </nav>
             <div class="header-text">
                 <h1>Bryce Mayday</h1>
@@ -27,55 +27,39 @@
         </div>
     </div>
 
-    <!--------about-------------->
+    <!-- About Section -->
     <div id="about">
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="images/about-me.png">
+                    <img src="images/about-me.png" alt="Picture of Bryce Mayday">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
-                    <p>I am a second year student at MSU who is majoring in computer science. I am a student who loves to learn and embraces being a beginner.
-                         I'm never afraid to ask for help and believe that there is always more to be learned. I value asking questions and see it as a key part 
-                         of the learning process. There are always new ideas and perspectives on ways to solve problems. I enjoy challenges and view them as opportunities to grow and learn. 
-                         I love collaborating with others and learning from their experiences and insights. </p>
+                    <p>I am a second-year student at MSU majoring in computer science. I love to learn and embrace being a beginner. I'm never afraid to ask for help and believe that there is always more to be learned. I value asking questions and see it as a key part of the learning process. There are always new ideas and perspectives on ways to solve problems. I enjoy challenges and view them as opportunities to grow and learn. I love collaborating with others and learning from their experiences and insights.</p>
 
                     <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
                     </div>
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li><span>languages</span><br>python,java,javascript</li>
-                            <li><span>webscraping</span><br>Became proficient in using beautiful soup through side projects.</li>
-                            <li><span>langchain</span><br>Utilized LangChain to develop and deploy conversational AI applications.</li>
-                            <li><span>RAG</span><br>Used RAG techniques to enhance the accuracy and relevance of AI-generated content.</li>
+                            <li><span>Languages</span><br>Python, Java, JavaScript</li>
+                            <li><span>Web Scraping</span><br>Became proficient in using Beautiful Soup through side projects.</li>
+                            <li><span>LangChain</span><br>Utilized LangChain to develop and deploy conversational AI applications.</li>
+                            <li><span>RAG</span><br>Used Retrieval-Augmented Generation techniques to enhance the accuracy and relevance of AI-generated content.</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
-                            <li><span>Michigan roots gardening - landscaper</span><br>worked as a landscaper for 2 years at a landscaping company with high 
-                                end clients in the metro Detroit area. Collaborated with clients to design and implement landscape plans, enhancing my communication 
-                                and problem-solving abilities.Worked effectively both independently and as part of a team, ensuring project completion within deadlines and to high standards.
-                            </li>
-                            <li><span>Artas Italian - host/busser</span><br> worked as a host and  busser at a high end italian restaurant for 3 months. 
-                                Developed excellent communication and teamwork skills by collaborating with kitchen and wait staff to ensure timely and accurate service. Utilized problem-solving 
-                                skills to handle customer complaints and ensure a positive dining experience.Managed time effectively during peak hours to ensure customer satisfaction and smooth operation.
-                            </li>
-                            <!--
-                            <li><span>third2</span><br>description</li>
-                            -->
+                            <li><span>Michigan Roots Gardening – Landscaper</span><br>Worked as a landscaper for 2 years at a landscaping company with high-end clients in the metro Detroit area. Collaborated with clients to design and implement landscape plans, enhancing my communication and problem-solving abilities. Worked effectively both independently and as part of a team, ensuring project completion within deadlines and to high standards.</li>
+                            <li><span>Arta's Italian – Host/Busser</span><br>Worked as a host and busser at a high-end Italian restaurant for 3 months. Developed excellent communication and teamwork skills by collaborating with kitchen and wait staff to ensure timely and accurate service. Utilized problem-solving skills to handle customer complaints and ensure a positive dining experience. Managed time effectively during peak hours to ensure customer satisfaction and smooth operation.</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="education">
                         <ul>
-                            <li><span>Michigan State Universy</span><br>Bachelors degree 2027.</li>
-                            <!--
-                            <li><span>second3</span><br>description</li>
-                            <li><span>third3</span><br>description</li>
-                            -->
+                            <li><span>Michigan State University</span><br>Bachelor's Degree, 2027.</li>
                         </ul>
                     </div>
                 </div>
@@ -83,45 +67,53 @@
         </div>
     </div>
 
-    <!---------------------portfolio----------->
+    <!-- Portfolio Section -->
     <div id="portfolio">
         <div class="container">
             <h1 class="sub-title">My Work</h1>
+
             <div class="work">
                 <img src="images/newsArticleScreenshot.png" alt="News Article Screenshot">
                 <div>
                     <h3>Interactive News Article</h3>
-                    <p>I delved into web scraping using Python's requests and BeautifulSoup libraries, allowing me to extract meaningful content from HTML documents.
-                        I explored API integration, particularly with OpenAI's GPT models, which taught me how to harness powerful language models to generate insightful responses.
-                        Implementing Flask as a web framework enabled me to create a robust backend for handling requests and serving web pages. I set up environment variable management with dotenv,
-                        securing sensitive information such as API keys. Throughout the process, I implemented logging to monitor application behavior and debug effectively. I got hands-on experience 
-                        with Retrieval-Augmented Generation (RAG), which involves retrieving relevant documents and generating responses based on that information, thereby improving the quality and relevance
-                        of generated content. This technique, often implemented using tools like LangChain, significantly enhances the application's ability to provide accurate and contextually appropriate answers.</p>
+                    <p>I delved into web scraping using Python's requests and BeautifulSoup libraries, allowing me to extract meaningful content from HTML documents. I explored API integration, particularly with OpenAI's GPT models, which taught me how to harness powerful language models to generate insightful responses. Implementing Flask as a web framework enabled me to create a robust backend for handling requests and serving web pages. I set up environment variable management with dotenv, securing sensitive information such as API keys. Throughout the process, I implemented logging to monitor application behavior and debug effectively. I gained hands-on experience with Retrieval-Augmented Generation (RAG), which involves retrieving relevant documents and generating responses based on that information, thereby improving the quality and relevance of generated content. This technique, often implemented using tools like LangChain, significantly enhances the application's ability to provide accurate and contextually appropriate answers.</p>
                 </div>
             </div>
+
             <div class="work">
                 <img src="images/ytAppScreenshot.png" alt="YouTube App Screenshot">
                 <div>
-                    <h3>Youtube Video Analysis</h3>
-                    <p>After completing this new project, I gained valuable insights and hands-on experience with several new tools and techniques. I learned how to leverage the YouTube Transcript API to fetch video transcripts,
-                        which involved understanding how to extract and manipulate video IDs from URLs. This project also enhanced my skills in integrating OpenAI's GPT-3.5-turbo model to summarize transcripts and generate responses 
-                        based on user questions. I improved my Flask application development skills, particularly in managing routes and handling JSON data with the request and jsonify modules. Implementing CORS (Cross-Origin Resource Sharing)
-                        with Flask-CORS was another critical aspect, ensuring my application could interact with resources from different origins. Through this project, I solidified my understanding of web scraping, API integration, 
-                        and secure application development practices, which collectively broadened my technical expertise.</p>
+                    <h3>YouTube Video Analysis</h3>
+                    <p>After completing this project, I gained valuable insights and hands-on experience with several new tools and techniques. I learned how to leverage the YouTube Transcript API to fetch video transcripts, which involved understanding how to extract and manipulate video IDs from URLs. This project also enhanced my skills in integrating OpenAI's GPT-3.5-turbo model to summarize transcripts and generate responses based on user questions. I improved my Flask application development skills, particularly in managing routes and handling JSON data with the request and jsonify modules. Implementing CORS (Cross-Origin Resource Sharing) with Flask-CORS was another critical aspect, ensuring my application could interact with resources from different origins. Through this project, I solidified my understanding of web scraping, API integration, and secure application development practices, which collectively broadened my technical expertise.</p>
                 </div>
             </div>
+
+            <div class="work">
+                <video width="640" height="360" controls>
+                    <source src="images/hackathon_vid.mp4" type="video/mp4">
+                    <!-- Optionally include other formats -->
+                    <!-- <source src="images/hackathon_vid.webm" type="video/webm"> -->
+                    Your browser does not support the video tag. You can <a href="images/hackathon_vid.mp4">download the video here</a>.
+                </video>
+                <div>
+                    <h3>Michigan Tech Week Hackathon Project</h3>
+                    <p>Here is a video of my hackathon project during Michigan Tech Week. Our team developed an innovative solution to [briefly describe the problem you addressed]. My contributions included [list your key roles or tasks]. This project allowed me to enhance my skills in [mention technologies or skills], and it was a great experience collaborating under time constraints.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <!-- JavaScript Section -->
     <script>
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
 
-        function opentab(tabname) {
-            for (tablink of tablinks) {
+        function opentab(event, tabname) {
+            for (var tablink of tablinks) {
                 tablink.classList.remove("active-link");
             }
-            for (tabcontent of tabcontents) {
+            for (var tabcontent of tabcontents) {
                 tabcontent.classList.remove("active-tab");
             }
             event.currentTarget.classList.add("active-link");
