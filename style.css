@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +15,7 @@ body {
     color: #fff;
 }
 
+/* Header */
 #header {
     width: 100%;
     background-image: url(images/blackbackground.png);
@@ -41,6 +43,7 @@ body {
     margin-bottom: 0; /* Ensure there's no margin at the bottom */
 }
 
+/* Navigation */
 nav {
     display: flex;
     align-items: center;
@@ -76,6 +79,7 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+/* About Section */
 #about {
     padding: 20px 0;
     color: #ababab;
@@ -152,6 +156,7 @@ nav ul li a:hover::after {
     display: block;
 }
 
+/* Portfolio Section */
 #portfolio {
     padding: 50px 0;
 }
@@ -163,15 +168,16 @@ nav ul li a:hover::after {
     margin-bottom: 40px;
 }
 
-.work img {
+.work img,
+.work video {
     width: 100%;
-    max-width: 300px;
+    max-width: 300px; /* Ensure consistency between images and video */
     border-radius: 10px;
     display: block;
     margin-right: 20px;
 }
 
-.work p {
+.work div {
     flex: 1;
 }
 
@@ -180,6 +186,11 @@ nav ul li a:hover::after {
     color: #ff004f;
 }
 
+.work p {
+    color: #ababab;
+}
+
+/* Button */
 .btn {
     display: block;
     margin: 50px auto;
@@ -196,8 +207,7 @@ nav ul li a:hover::after {
     background: #ff004f;
 }
 
-/*----------css for small screen-----------*/
-
+/* CSS for Small Screens */
 nav .fas {
     display: none;
 }
@@ -249,7 +259,8 @@ nav .fas {
         font-size: 40px;
     }
 
-    .about-col-1, .about-col-2 {
+    .about-col-1,
+    .about-col-2 {
         flex-basis: 100%;
     }
 
@@ -270,8 +281,9 @@ nav .fas {
         flex-direction: column;
     }
 
-    .work img {
-        margin-bottom: 20px;
+    .work img,
+    .work video {
         margin-right: 0;
+        margin-bottom: 20px;
     }
 }
