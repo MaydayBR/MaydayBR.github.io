@@ -121,13 +121,15 @@ re-rank), APIs (PubMed eUtils)</li>
         </div>
     </div>
 
-    <!-- Image Viewer Modal (for fullscreen-style image viewing) -->
+    <!-- Image Viewer Modal (fullscreen-style image viewing) -->
     <div id="img-modal" aria-hidden="true">
         <button class="modal-btn close" aria-label="Close (Esc)">&times;</button>
         <button class="modal-btn fs" aria-label="Enter Fullscreen">
             <i class="fas fa-expand"></i>
         </button>
-        <img id="img-modal-content" alt="Expanded screenshot">
+        <div class="img-stage">
+            <img id="img-modal-content" alt="Expanded screenshot">
+        </div>
     </div>
 
     <!-- JavaScript Section -->
@@ -135,14 +137,9 @@ re-rank), APIs (PubMed eUtils)</li>
         // Tabs
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
-
         function opentab(event, tabname) {
-            for (var tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (var tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
+            for (var tablink of tablinks) tablink.classList.remove("active-link");
+            for (var tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
             event.currentTarget.classList.add("active-link");
             document.getElementById(tabname).classList.add("active-tab");
         }
@@ -156,52 +153,53 @@ re-rank), APIs (PubMed eUtils)</li>
     </script>
 
     <script>
-        // ---------- Image fullscreen viewer ----------
+        // ---------- Image fullscreen viewer (no over-zoom; contained fit) ----------
         (function(){
             const modal = document.getElementById('img-modal');
+            const stage = modal.querySelector('.img-stage');
             const modalImg = document.getElementById('img-modal-content');
             const closeBtn = modal.querySelector('.modal-btn.close');
             const fsBtn = modal.querySelector('.modal-btn.fs');
 
-            // Open modal on any gallery image click
+            // Open modal and request fullscreen on the MODAL (not the img)
+            function openViewer(src) {
+                modalImg.src = src;
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                if (modal.requestFullscreen) {
+                    modal.requestFullscreen().catch(()=>{});
+                }
+            }
+
             document.querySelectorAll('.gallery-4 .zoomable').forEach(img => {
                 img.style.cursor = 'zoom-in';
-                img.addEventListener('click', () => {
-                    modalImg.src = img.src;
-                    modal.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden'; // prevent background scroll
-                });
+                img.addEventListener('click', () => openViewer(img.src));
             });
 
-            // Close handlers
-            function closeModal() {
+            function closeViewer() {
                 modal.setAttribute('aria-hidden', 'true');
                 modalImg.src = '';
                 document.body.style.overflow = '';
-                if (document.fullscreenElement) {
+                if (document.fullscreenElement === modal) {
                     document.exitFullscreen().catch(()=>{});
                 }
             }
 
-            closeBtn.addEventListener('click', closeModal);
+            closeBtn.addEventListener('click', closeViewer);
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal(); // click outside image closes
+                // click outside the stage closes
+                if (e.target === modal) closeViewer();
             });
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal();
+                if (e.key === 'Escape') closeViewer();
             });
 
-            // Fullscreen button
-            fsBtn.addEventListener('click', async () => {
-                try {
-                    // Try to fullscreen the modal image; if blocked, fullscreen the modal
-                    if (modalImg.requestFullscreen) {
-                        await modalImg.requestFullscreen();
-                    } else if (modal.requestFullscreen) {
-                        await modal.requestFullscreen();
-                    }
-                } catch (err) {
-                    // Silently ignore if the browser disallows
+            // Manual fullscreen toggle button (in case browser blocks auto)
+            fsBtn.addEventListener('click', () => {
+                if (document.fullscreenElement === modal) {
+                    document.exitFullscreen().catch(()=>{});
+                } else if (modal.requestFullscreen) {
+                    modal.requestFullscreen().catch(()=>{});
                 }
             });
         })();
