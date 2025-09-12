@@ -171,7 +171,7 @@ nav ul li a:hover::after {
 .work img,
 .work video {
     width: 100%;
-    max-width: 300px; /* Ensure consistency between images and video */
+    max-width: 300px; /* For single media blocks */
     border-radius: 10px;
     display: block;
     margin-right: 20px;
@@ -183,25 +183,26 @@ nav ul li a:hover::after {
 
 .work h3 {
     margin-bottom: 10px;
-    color: #ff004f; /* red title e.g., "Knomedic" */
+    color: #ff004f; /* red title, e.g., "Knomedic" */
 }
 
 .work p {
     color: #ababab;
 }
 
-/* --- NEW: 4-image gallery layout for Knowmedic --- */
+/* ---- 2x2 image grid for Knowmedic, text to the right ---- */
 .gallery-4 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* exactly 2 per row */
     gap: 12px;
-    margin-right: 20px; /* space before the text column */
-    max-width: 680px;   /* keeps the grid from getting too wide */
+    margin-right: 24px; /* space before the text column */
+    width: 100%;
+    max-width: 420px;   /* keeps gallery compact so text sits to the right */
 }
 
-/* Override defaults for gallery images so they fill their grid cells */
+/* Make images fill their grid cells */
 .work .gallery-4 img {
-    max-width: none;
+    max-width: none;   /* override the 300px cap from .work img */
     margin-right: 0;
     width: 100%;
     height: auto;
@@ -225,7 +226,7 @@ nav ul li a:hover::after {
     background: #ff004f;
 }
 
-/* CSS for Small Screens */
+/* Small screens */
 nav .fas {
     display: none;
 }
@@ -296,7 +297,7 @@ nav .fas {
     }
 
     .work {
-        flex-direction: column;
+        flex-direction: column; /* text will go under the gallery on small screens */
     }
 
     .work img,
@@ -305,10 +306,11 @@ nav .fas {
         margin-bottom: 20px;
     }
 
-    /* Mobile: 2x2 grid and spacing */
+    /* Keep gallery as 2x2 on mobile as requested */
     .gallery-4 {
         margin-right: 0;
         margin-bottom: 20px;
         grid-template-columns: repeat(2, 1fr);
+        max-width: none;
     }
 }
