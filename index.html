@@ -79,12 +79,12 @@ re-rank), APIs (PubMed eUtils)</li>
             <!-- Knowmedic (Knomedic) block with 2x2 photos on the left, description on the right -->
             <div class="work" id="knomedic">
                 <div class="gallery-4">
-                    <img src="images/first_Pic_knowmedic.png" alt="Knowmedic screenshot 1">
-                    <img src="images/Second_Pic_knowmedic.png" alt="Knowmedic screenshot 2">
-                    <img src="images/Third_Pic_Knowmedic.png" alt="Knowmedic screenshot 3">
-                    <img src="images/Fourth_Pic_Knomedic.png" alt="Knowmedic screenshot 4">
+                    <img src="images/first_Pic_knowmedic.png" alt="Knowmedic screenshot 1" class="zoomable">
+                    <img src="images/Second_Pic_knowmedic.png" alt="Knowmedic screenshot 2" class="zoomable">
+                    <img src="images/Third_Pic_Knowmedic.png" alt="Knowmedic screenshot 3" class="zoomable">
+                    <img src="images/Fourth_Pic_Knomedic.png" alt="Knowmedic screenshot 4" class="zoomable">
                 </div>
-                <div>
+                <div class="knomedic-text">
                     <h3>Knomedic</h3>
                     <p>Knowmedic is a mobile app that helps people discover and understand new medical research. It pulls recent PubMed studies, applies semantic search and ranking, and lets users save, organize, and interact with articles. The stack includes React Native (Expo), Firebase (Auth, Firestore, Cloud Functions, Storage), and Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery) for ingestion, search, and scalable data pipelines.</p>
                 </div>
@@ -108,7 +108,7 @@ re-rank), APIs (PubMed eUtils)</li>
             </div>
 
             <div class="work">
-                <video width="640" height="360" controls>
+                <video width="640" height="360" controls playsinline>
                     <source src="images/hackathon_vid.mp4" type="video/mp4">
                     Your browser does not support the video tag. You can <a href="images/hackathon_vid.mp4">download the video here</a>.
                 </video>
@@ -121,8 +121,18 @@ re-rank), APIs (PubMed eUtils)</li>
         </div>
     </div>
 
+    <!-- Image Viewer Modal (for fullscreen-style image viewing) -->
+    <div id="img-modal" aria-hidden="true">
+        <button class="modal-btn close" aria-label="Close (Esc)">&times;</button>
+        <button class="modal-btn fs" aria-label="Enter Fullscreen">
+            <i class="fas fa-expand"></i>
+        </button>
+        <img id="img-modal-content" alt="Expanded screenshot">
+    </div>
+
     <!-- JavaScript Section -->
     <script>
+        // Tabs
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
 
@@ -139,15 +149,62 @@ re-rank), APIs (PubMed eUtils)</li>
     </script>
 
     <script>
+        // Mobile menu
         var sidemenu = document.getElementById("sidemenu");
+        function openmenu() { sidemenu.style.right = "0"; }
+        function closemenu() { sidemenu.style.right = "-200px"; }
+    </script>
 
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
+    <script>
+        // ---------- Image fullscreen viewer ----------
+        (function(){
+            const modal = document.getElementById('img-modal');
+            const modalImg = document.getElementById('img-modal-content');
+            const closeBtn = modal.querySelector('.modal-btn.close');
+            const fsBtn = modal.querySelector('.modal-btn.fs');
 
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
+            // Open modal on any gallery image click
+            document.querySelectorAll('.gallery-4 .zoomable').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', () => {
+                    modalImg.src = img.src;
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden'; // prevent background scroll
+                });
+            });
+
+            // Close handlers
+            function closeModal() {
+                modal.setAttribute('aria-hidden', 'true');
+                modalImg.src = '';
+                document.body.style.overflow = '';
+                if (document.fullscreenElement) {
+                    document.exitFullscreen().catch(()=>{});
+                }
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(); // click outside image closes
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // Fullscreen button
+            fsBtn.addEventListener('click', async () => {
+                try {
+                    // Try to fullscreen the modal image; if blocked, fullscreen the modal
+                    if (modalImg.requestFullscreen) {
+                        await modalImg.requestFullscreen();
+                    } else if (modal.requestFullscreen) {
+                        await modal.requestFullscreen();
+                    }
+                } catch (err) {
+                    // Silently ignore if the browser disallows
+                }
+            });
+        })();
     </script>
 </body>
 </html>
