@@ -183,11 +183,29 @@ nav ul li a:hover::after {
 
 .work h3 {
     margin-bottom: 10px;
-    color: #ff004f;
+    color: #ff004f; /* red title e.g., "Knomedic" */
 }
 
 .work p {
     color: #ababab;
+}
+
+/* --- NEW: 4-image gallery layout for Knowmedic --- */
+.gallery-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-right: 20px; /* space before the text column */
+    max-width: 680px;   /* keeps the grid from getting too wide */
+}
+
+/* Override defaults for gallery images so they fill their grid cells */
+.work .gallery-4 img {
+    max-width: none;
+    margin-right: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 /* Button */
@@ -285,5 +303,12 @@ nav .fas {
     .work video {
         margin-right: 0;
         margin-bottom: 20px;
+    }
+
+    /* Mobile: 2x2 grid and spacing */
+    .gallery-4 {
+        margin-right: 0;
+        margin-bottom: 20px;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
