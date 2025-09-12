@@ -6,9 +6,7 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     background: #080808;
@@ -24,110 +22,35 @@ body {
     padding: 100px 0;
 }
 
-.container {
-    padding: 10px 10%;
-}
+.container { padding: 10px 10%; }
 
-.header-text {
-    text-align: center;
-    padding: 20px 0;
-}
-
-.header-text h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-}
-
-.header-text p {
-    font-size: 24px;
-    margin-bottom: 0;
-}
+.header-text { text-align: center; padding: 20px 0; }
+.header-text h1 { font-size: 48px; margin-bottom: 10px; }
+.header-text p { font-size: 24px; margin-bottom: 0; }
 
 /* Navigation */
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-}
-
-nav ul li {
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-}
-
-nav ul li a::after {
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
-}
+nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+nav ul li { display: inline-block; list-style: none; margin: 10px 20px; }
+nav ul li a { color: #fff; text-decoration: none; font-size: 18px; position: relative; }
+nav ul li a::after { content: ''; width: 0; height: 3px; background: #ff004f; position: absolute; left: 0; bottom: -6px; transition: 0.5s; }
+nav ul li a:hover::after { width: 100%; }
 
 /* About Section */
-#about {
-    padding: 20px 0;
-    color: #ababab;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
+#about { padding: 20px 0; color: #ababab; }
+.row { display: flex; justify-content: space-between; flex-wrap: wrap; }
 .about-col-1 { flex-basis: 35%; }
 .about-col-1 img { width: 100%; border-radius: 15px; }
-
 .about-col-2 { flex-basis: 60%; }
 
-.sub-title {
-    font-size: 60px;
-    font-weight: 600;
-    color: #fff;
-}
+.sub-title { font-size: 60px; font-weight: 600; color: #fff; }
 
 .tab-titles { display: flex; margin: 20px 0 40px; }
-
-.tab-links {
-    margin-right: 50px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-}
-
-.tab-links::after {
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    transition: 0.5s;
-}
-
+.tab-links { margin-right: 50px; font-size: 18px; font-weight: 500; cursor: pointer; position: relative; }
+.tab-links::after { content: ''; width: 0; height: 3px; background: #ff004f; position: absolute; left: 0; bottom: -8px; transition: 0.5s; }
 .tab-links.active-link::after { width: 50%; }
 
 .tab-contents ul li { list-style: none; margin: 10px 0; }
 .tab-contents ul li span { color: #b54769; font-size: 14px; }
-
 .tab-contents { display: none; }
 .tab-contents.active-tab { display: block; }
 
@@ -152,23 +75,24 @@ nav ul li a:hover::after {
 
 .work div { flex: 1; }
 
+/* Align Knomedic text with top row of photos */
+#knomedic { align-items: flex-start; }
+
 .work h3 {
-    margin: 0 0 10px 0; /* ensure no top margin so it aligns tighter to the top */
-    color: #ff004f;     /* red title e.g., "Knomedic" */
+    margin: 0 0 10px 0;   /* tighter to top */
+    color: #ff004f;       /* red title e.g., "Knomedic" */
 }
 
 .work p { color: #ababab; }
 
-/* ---- 2x2 image grid for Knowmedic ---- */
-#knomedic { align-items: flex-start; } /* top-align text with top row of photos */
-
+/* ---- 2x2 image grid for Knowmedic, text to the right ---- */
 .gallery-4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* exactly 2 per row */
     gap: 12px;
-    margin-right: 24px; /* space before the text column */
+    margin-right: 24px;  /* space before the text column */
     width: 100%;
-    max-width: 420px;   /* keeps gallery compact so text sits to the right */
+    max-width: 420px;    /* keeps gallery compact so text sits to the right */
 }
 
 .work .gallery-4 img {
@@ -177,6 +101,7 @@ nav ul li a:hover::after {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    cursor: zoom-in;
 }
 
 /* Buttons */
@@ -193,26 +118,39 @@ nav ul li a:hover::after {
 }
 .btn:hover { background: #ff004f; }
 
-/* -------- Image Modal (fullscreen-style) -------- */
-#img-modal[aria-hidden="true"] {
-    display: none;
-}
+/* -------- Image Modal (fullscreen-style, contained fit) -------- */
+#img-modal[aria-hidden="true"] { display: none; }
 
 #img-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.93);
     display: grid;
     place-items: center;
     z-index: 9999;
-    padding: 24px;
+    padding: 16px;
+}
+
+/* Stage ensures the image is contained and not over-zoomed */
+#img-modal .img-stage {
+    width: min(96vw, 1400px);
+    height: min(96vh, 96vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #img-modal img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* key: never crop, never over-zoom */
     border-radius: 10px;
 }
+
+/* When the modal is truly fullscreen, still contain the image */
+#img-modal:fullscreen .img-stage { width: 100vw; height: 100vh; }
+/* Safari/WebKit prefix */
+#img-modal:-webkit-full-screen .img-stage { width: 100vw; height: 100vh; }
 
 .modal-btn {
     position: absolute;
@@ -226,7 +164,6 @@ nav ul li a:hover::after {
     font-size: 18px;
     line-height: 1;
 }
-
 .modal-btn.close { right: 16px; }
 .modal-btn.fs { right: 56px; }
 
@@ -274,6 +211,5 @@ nav .fas { display: none; }
         max-width: none;
     }
 
-    /* Modal buttons a bit larger on mobile */
     .modal-btn { font-size: 20px; padding: 12px 14px; }
 }
