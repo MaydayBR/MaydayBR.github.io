@@ -28,12 +28,12 @@ body {
 .header-text h1 { font-size: 48px; margin-bottom: 10px; }
 .header-text p { font-size: 24px; margin-bottom: 0; }
 
-/* NEW: Header quick links (LinkedIn + Resume) */
+/* Header quick links (LinkedIn + Resume) */
 .header-links {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-top: 10px;      /* space below subtitle */
+    margin-top: 10px;
 }
 
 .icon-btn {
@@ -70,6 +70,12 @@ nav ul li a { color: #fff; text-decoration: none; font-size: 18px; position: rel
 nav ul li a::after { content: ''; width: 0; height: 3px; background: #ff004f; position: absolute; left: 0; bottom: -6px; transition: 0.5s; }
 nav ul li a:hover::after { width: 100%; }
 
+/* Ensure the new FA6 icons hide/show like before */
+nav i { display: none; }
+@media only screen and (max-width: 600px) {
+    nav i { display: block; font-size: 25px; }
+}
+
 /* About Section */
 #about { padding: 20px 0; color: #ababab; }
 .row { display: flex; justify-content: space-between; flex-wrap: wrap; }
@@ -102,7 +108,7 @@ nav ul li a:hover::after { width: 100%; }
 .work img,
 .work video {
     width: 100%;
-    max-width: 300px; /* For single media blocks */
+    max-width: 300px;
     border-radius: 10px;
     display: block;
     margin-right: 20px;
@@ -114,24 +120,24 @@ nav ul li a:hover::after { width: 100%; }
 #knomedic { align-items: flex-start; }
 
 .work h3 {
-    margin: 0 0 10px 0;   /* tighter to top */
-    color: #ff004f;       /* red title e.g., "Knomedic" */
+    margin: 0 0 10px 0;
+    color: #ff004f;
 }
 
 .work p { color: #ababab; }
 
-/* ---- 2x2 image grid for Knowmedic, text to the right ---- */
+/* 2x2 image grid for Knowmedic, text to the right */
 .gallery-4 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* exactly 2 per row */
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    margin-right: 24px;  /* space before the text column */
+    margin-right: 24px;
     width: 100%;
-    max-width: 420px;    /* keeps gallery compact so text sits to the right */
+    max-width: 420px;
 }
 
 .work .gallery-4 img {
-    max-width: none;   /* override the 300px cap from .work img */
+    max-width: none;
     margin-right: 0;
     width: 100%;
     height: auto;
@@ -139,7 +145,7 @@ nav ul li a:hover::after { width: 100%; }
     cursor: zoom-in;
 }
 
-/* ---------- Knowmedic subsection styling ---------- */
+/* Knowmedic subsection styling */
 .knomedic-text { min-width: 280px; }
 .knomedic-text h4 {
     margin: 18px 0 8px 0;
@@ -169,7 +175,7 @@ nav ul li a:hover::after { width: 100%; }
 }
 .btn:hover { background: #ff004f; }
 
-/* -------- Image Modal (fullscreen-style, contained fit) -------- */
+/* Image Modal (fullscreen-style, contained fit) */
 #img-modal[aria-hidden="true"] { display: none; }
 
 #img-modal {
@@ -182,7 +188,6 @@ nav ul li a:hover::after { width: 100%; }
     padding: 16px;
 }
 
-/* Stage ensures the image is contained and not over-zoomed */
 #img-modal .img-stage {
     width: min(96vw, 1400px);
     height: min(96vh, 96vh);
@@ -194,13 +199,11 @@ nav ul li a:hover::after { width: 100%; }
 #img-modal img {
     width: 100%;
     height: 100%;
-    object-fit: contain;  /* key: never crop, never over-zoom */
+    object-fit: contain;
     border-radius: 10px;
 }
 
-/* When the modal is truly fullscreen, still contain the image */
 #img-modal:fullscreen .img-stage { width: 100vw; height: 100vh; }
-/* Safari/WebKit prefix */
 #img-modal:-webkit-full-screen .img-stage { width: 100vw; height: 100vh; }
 
 .modal-btn {
@@ -219,15 +222,11 @@ nav ul li a:hover::after { width: 100%; }
 .modal-btn.fs { right: 56px; }
 
 /* Small screens */
-nav .fas { display: none; }
-
 @media only screen and (max-width: 600px) {
     #header { background-image: url(images/blackbackground.png); }
 
     .header-text { margin-top: 100%; font-size: 16px; }
     .header-text h1 { font-size: 30px; }
-
-    nav .fas { display: block; font-size: 25px; }
 
     nav ul {
         background: #ff004f;
@@ -242,7 +241,6 @@ nav .fas { display: none; }
     }
 
     nav ul li { display: block; margin: 25px; }
-    nav ul .fas { position: absolute; top: 25px; left: 25px; cursor: pointer; }
 
     .sub-title { font-size: 40px; }
 
@@ -252,13 +250,13 @@ nav .fas { display: none; }
 
     .tab-links { font-size: 16px; margin-right: 20px; }
 
-    .work { flex-direction: column; } /* text under media on small screens */
+    .work { flex-direction: column; }
     .work img, .work video { margin-right: 0; margin-bottom: 20px; }
 
     .gallery-4 {
         margin-right: 0;
         margin-bottom: 20px;
-        grid-template-columns: repeat(2, 1fr); /* keep 2x2 on mobile */
+        grid-template-columns: repeat(2, 1fr);
         max-width: none;
     }
 
