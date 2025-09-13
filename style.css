@@ -104,6 +104,22 @@ nav ul li a:hover::after { width: 100%; }
     cursor: zoom-in;
 }
 
+/* ---------- Knowmedic subsection styling ---------- */
+.knomedic-text { min-width: 280px; }
+.knomedic-text h4 {
+    margin: 18px 0 8px 0;
+    font-size: 20px;
+    color: #fff;
+}
+.km-section { margin-bottom: 8px; }
+.knomedic-text ul {
+    margin-left: 1.25rem;
+    color: #ababab;
+    line-height: 1.6;
+    list-style: disc;
+}
+.knomedic-text li { margin: 6px 0; }
+
 /* Buttons */
 .btn {
     display: block;
