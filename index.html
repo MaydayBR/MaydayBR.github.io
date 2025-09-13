@@ -1,194 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Personal Portfolio Website - Bryce Mayday</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Portfolio Website - Bryce Mayday</title>
 
-   <!-- Font Awesome via CDN -->
-   <link rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2Pkf4VEswZ0bW+5ZxZxYQkzO3VQ8xPZ6C1uOaZ0ZxYx2w0uZP1Z0bZ1J9g=="
-         crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome 6 via jsDelivr (no SRI to avoid blocking on GH Pages) -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
 
-   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <h1>Bryce Mayday</h1>
-                <p>Software Developer / Programmer</p>
+  <div id="header">
+    <div class="container">
+      <nav>
+        <ul id="sidemenu">
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <!-- close button for mobile menu -->
+          <i class="fa-solid fa-xmark nav-close" onclick="closemenu()" aria-label="Close menu"></i>
+        </ul>
+        <i class="fa-solid fa-bars nav-open" onclick="openmenu()" aria-label="Open menu"></i>
+      </nav>
 
-                <!-- LinkedIn + Resume icons -->
-                <div class="header-links" role="group" aria-label="Profile links">
-                  <a
-                    href="https://www.linkedin.com/in/bmayday/"
-                    class="icon-btn"
-                    aria-label="LinkedIn"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-                  </a>
+      <div class="header-text">
+        <h1>Bryce Mayday</h1>
+        <p>Software Developer / Programmer</p>
 
-                  <!-- Resume inside /images folder -->
-                  <a
-                    href="images/Bryce_Mayday%20%289%29.pdf"
-                    class="icon-btn"
-                    aria-label="Resume (PDF)"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-                  </a>
-                </div>
-            </div>
+        <!-- LinkedIn + Resume icons -->
+        <div class="header-links" role="group" aria-label="Profile links">
+          <a href="https://www.linkedin.com/in/bmayday/"
+             class="icon-btn"
+             aria-label="LinkedIn"
+             target="_blank"
+             rel="noopener">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+
+          <!-- PDF lives in images/ and name contains space + parentheses -->
+          <a href="images/Bryce_Mayday%20%289%29.pdf"
+             class="icon-btn"
+             aria-label="Resume (PDF)"
+             target="_blank"
+             rel="noopener">
+            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+          </a>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- About Section -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p>I am a third-year student at MSU majoring in computer science. I love to learn and embrace being a beginner. I'm never afraid to ask for help and believe that there is always more to be learned. I value asking questions and see it as a key part of the learning process. There are always new ideas and perspectives on ways to solve problems. I enjoy challenges and view them as opportunities to grow and learn. I love collaborating with others and learning from their experiences and insights.</p>
+  <!-- About Section -->
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="about-col-2">
+          <h1 class="sub-title">About Me</h1>
+          <p>
+            I am a third-year student at MSU majoring in computer science. I love to learn and embrace being a beginner. I'm never afraid to ask for help and believe that there is always more to be learned. I value asking questions and see it as a key part of the learning process. There are always new ideas and perspectives on ways to solve problems. I enjoy challenges and view them as opportunities to grow and learn. I love collaborating with others and learning from their experiences and insights.
+          </p>
 
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>Languages</span><br>Python, C++, JavaScript, SQL, Java, </li>
-                            <li><span>Mobile and Web</span><br>React Native (Expo), React, Flask Cloud & Backend: Firebase (Auth, Firestore, Storage, Cloud Functions v2),
-Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery).</li>
-                            <li><span>Data & Search</span><br>Semantic search, embeddings, vector search (HNSW/IVF), cosine similarity, hybrid search (keyword + vector
-re-rank), APIs (PubMed eUtils)</li>
-                            <li><span>Release & Tools</span><br>Git/GitHub, npm/yarn, Xcode, EAS, GitHub Pages Security & Compliance: Account deletion flows
-(recursive), privacy policy & terms.</li>
-                            <li><span>API</span><br>very comfortable using APIs</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li><span>Michigan Roots Gardening – Landscaper</span><br>Worked as a landscaper for 2 years at a landscaping company with high-end clients in the metro Detroit area. Collaborated with clients to design and implement landscape plans, enhancing my communication and problem-solving abilities. Worked effectively both independently and as part of a team, ensuring project completion within deadlines and to high standards.</li>
-                            <li><span>Arta's Italian – Host/Busser</span><br>Worked as a host and busser at a high-end Italian restaurant for 3 months. Developed excellent communication and teamwork skills by collaborating with kitchen and wait staff to ensure timely and accurate service. Utilized problem-solving skills to handle customer complaints and ensure a positive dining experience. Managed time effectively during peak hours to ensure customer satisfaction and smooth operation.</li>
-                            <li><span>MSU Artificial Intelligence club</span><br>I am a member of the MSU Artificial Intelligence club which teaches students about new and exciting AI tools, and provides students with side projects to work on.</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>Michigan State University</span><br>Bachelor's Degree, 2027.</li>
-                           <li><span>GPA</span><br>3.26</li>
-                           <li><span>Relevant Courses </span><br>Algorithms and Data Structures, Software Design, Info management and the Cloud, Computer Systems.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
+            <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
+            <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
+          </div>
+
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li><span>Languages</span><br>Python, C++, JavaScript, SQL, Java</li>
+              <li><span>Mobile and Web</span><br>
+                React Native (Expo), React, Flask <br>
+                <strong>Cloud &amp; Backend:</strong> Firebase (Auth, Firestore, Storage, Cloud Functions v2),
+                Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery).
+              </li>
+              <li><span>Data &amp; Search</span><br>
+                Semantic search, embeddings, vector search (HNSW/IVF), cosine similarity, hybrid search (keyword + vector re-rank), APIs (PubMed eUtils)
+              </li>
+              <li><span>Release &amp; Tools</span><br>
+                Git/GitHub, npm/yarn, Xcode, EAS, GitHub Pages <br>
+                <strong>Security &amp; Compliance:</strong> Account deletion flows (recursive), privacy policy &amp; terms
+              </li>
+              <li><span>API</span><br>very comfortable using APIs</li>
+            </ul>
+          </div>
+
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>Michigan Roots Gardening – Landscaper</span><br>
+                Worked as a landscaper for 2 years at a landscaping company with high-end clients in the metro Detroit area. Collaborated with clients to design and implement landscape plans, enhancing my communication and problem-solving abilities. Worked effectively both independently and as part of a team, ensuring project completion within deadlines and to high standards.
+              </li>
+              <li><span>Arta's Italian – Host/Busser</span><br>
+                Worked as a host and busser at a high-end Italian restaurant for 3 months. Developed excellent communication and teamwork skills by collaborating with kitchen and wait staff to ensure timely and accurate service. Utilized problem-solving skills to handle customer complaints and ensure a positive dining experience. Managed time effectively during peak hours to ensure customer satisfaction and smooth operation.
+              </li>
+              <li><span>MSU Artificial Intelligence club</span><br>
+                I am a member of the MSU Artificial Intelligence club which teaches students about new and exciting AI tools, and provides students with side projects to work on.
+              </li>
+            </ul>
+          </div>
+
+          <div class="tab-contents" id="education">
+            <ul>
+              <li><span>Michigan State University</span><br>Bachelor's Degree, 2027.</li>
+              <li><span>GPA</span><br>3.26</li>
+              <li><span>Relevant Courses </span><br>Algorithms and Data Structures, Software Design, Info management and the Cloud, Computer Systems.</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Portfolio Section -->
-    <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Work</h1>
+  <!-- Portfolio Section -->
+  <div id="portfolio">
+    <div class="container">
+      <h1 class="sub-title">My Work</h1>
 
-            <!-- ... your existing portfolio content ... -->
-
+      <!-- Knowmedic block with 2x2 photos left, description right -->
+      <div class="work" id="knomedic">
+        <div class="gallery-4">
+          <img src="images/first_Pic_knowmedic.png" alt="Knowmedic screenshot 1" class="zoomable">
+          <img src="images/Second_Pic_knowmedic.png" alt="Knowmedic screenshot 2" class="zoomable">
+          <img src="images/Third_Pic_Knowmedic.png" alt="Knowmedic screenshot 3" class="zoomable">
+          <img src="images/Fourth_Pic_Knomedic.png" alt="Knowmedic screenshot 4" class="zoomable">
         </div>
-    </div>
 
-    <!-- Image Viewer Modal (fullscreen-style image viewing) -->
-    <div id="img-modal" aria-hidden="true">
-        <button class="modal-btn close" aria-label="Close (Esc)">&times;</button>
-        <button class="modal-btn fs" aria-label="Enter Fullscreen">
-            <i class="fa-solid fa-expand"></i>
-        </button>
-        <div class="img-stage">
-            <img id="img-modal-content" alt="Expanded screenshot">
+        <div class="knomedic-text">
+          <h3>Knomedic</h3>
+          <p>
+            Knowmedic is a mobile app that helps people discover and understand new medical research. It pulls recent PubMed studies, applies semantic search and ranking, and lets users save, organize, and interact with articles. The stack includes React Native (Expo), Firebase (Auth, Firestore, Cloud Functions, Storage), and Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery) for ingestion, search, and scalable data pipelines.
+          </p>
+          <p>Private repo will be given upon request</p>
+
+          <section class="km-section">
+            <h4>Features</h4>
+            <ul>
+              <li>Bookmark system with custom folders to organize saved studies.</li>
+              <li>Unique-username reservation at sign-up with public profile pages and searchable profiles (users choose public vs. private during signup).</li>
+              <li><strong>Hot New Studies</strong> tab powered by the PubMed API and Google Pub/Sub, showcasing recently published research.</li>
+              <li>Engagement-driven <strong>Trending</strong> tab where scores are dynamically boosted by likes and bookmarks.</li>
+              <li>Secure account deletion via a callable Cloud Function that recursively removes all user data.</li>
+              <li>Real-time updates using Firestore listeners for live feed changes (likes, comments, bookmarks).</li>
+              <li>Profile editing with bios</li>
+              <li>Firestore security rules enforcing per-user access and privacy controls.</li>
+              <li>Integration with Firebase Authentication for email/password login.</li>
+              <li>Serverless backend built on Google Cloud Functions, ensuring scalable and cost-efficient infrastructure.</li>
+              <li>Scheduled tasks (Pub/Sub + Cloud Scheduler) to refresh feeds, prune old data, and keep “Hot New Studies” current.</li>
+            </ul>
+          </section>
+
+          <section class="km-section">
+            <h4>Stack</h4>
+            <ul>
+              <li><strong>Frontend:</strong> React Native (Expo/EAS) with React Navigation; fetch-based API calls and real-time Firestore listeners for dynamic updates.</li>
+              <li><strong>Firebase:</strong> Authentication (email/password), Firestore (profiles, bookmarks, articles, engagement data), Storage for media uploads, and Cloud Functions v2 (callable + trigger-based).</li>
+              <li><strong>Google Cloud Platform:</strong> Pub/Sub (fan-out ingestion), Cloud Scheduler (cron jobs), Cloud Run/Functions for background workers, BigQuery for article text, metadata, and embeddings.</li>
+              <li><strong>Data:</strong> PubMed eUtils (baseline + daily PMIDs), custom ingestion pipelines, OpenAI embeddings stored in BigQuery with IVF/HNSW vector indexes; hybrid keyword + semantic (vector) retrieval.</li>
+              <li><strong>Tooling &amp; Deployment:</strong> Git/GitHub for version control, GitHub Pages for Privacy Policy &amp; Terms, EAS builds for app distribution, Xcode &amp; Android Studio for local testing/debugging.</li>
+              <li><strong>Other:</strong> Firestore security rules for per-user data isolation, recursive user deletion workflows, and Pub/Sub-driven trending/“Hot New” study pipelines.</li>
+            </ul>
+          </section>
+
+          <section class="km-section">
+            <h4>My Plans for the Future</h4>
+            <ul>
+              <li>Introduce advanced filters (e.g., study type, MeSH tags, journal, publication year) and allow topic subscriptions with personalized digests.</li>
+              <li>Implement bias and quality checks, with automated warnings or reliability indicators for each study.</li>
+              <li>Enable shared folders and collaboration features, including public folders that can be viewed or followed by all users.</li>
+              <li>Expand the commenting system to include nested replies, voting (likes/dislikes), and engagement metrics — inspired by Reddit-style discussion threads.</li>
+              <li>Enhance search with full support for vector-based semantic retrieval (BigQuery + embeddings) alongside keyword-based search.</li>
+              <li>Develop an LLM-based assistant fine-tuned on the full corpus of biomedical literature, capable of answering questions and summarizing studies.</li>
+              <li>Add mobile notifications for trending studies, topic updates, or collaborative activity.</li>
+              <li>Explore partnerships with universities, research labs, and health organizations to validate and expand the platform’s impact.</li>
+            </ul>
+          </section>
         </div>
-    </div>
+      </div>
 
-    <!-- JavaScript Section -->
-    <script>
-        // Tabs
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        function opentab(event, tabname) {
-            for (var tablink of tablinks) tablink.classList.remove("active-link");
-            for (var tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
+      <!-- Interactive News Article -->
+      <div class="work">
+        <img src="images/newsArticleScreenshot.png" alt="News Article Screenshot" />
+        <div>
+          <h3>Interactive News Article</h3>
+          <p>
+            I delved into web scraping using Python's requests and BeautifulSoup libraries, allowing me to extract meaningful content from HTML documents. I explored API integration, particularly with OpenAI's GPT models, which taught me how to harness powerful language models to generate insightful responses. Implementing Flask as a web framework enabled me to create a robust backend for handling requests and serving web pages. I set up environment variable management with dotenv, securing sensitive information such as API keys. Throughout the process, I implemented logging to monitor application behavior and debug effectively. I gained hands-on experience with Retrieval-Augmented Generation (RAG), which involves retrieving relevant documents and generating responses based on that information, thereby improving the quality and relevance of generated content. This technique, often implemented using tools like LangChain, significantly enhances the application's ability to provide accurate and contextually appropriate answers.
+          </p>
+        </div>
+      </div>
+
+      <!-- YouTube Video Analysis -->
+      <div class="work">
+        <img src="images/ytAppScreenshot.png" alt="YouTube App Screenshot" />
+        <div>
+          <h3>YouTube Video Analysis</h3>
+          <p>
+            After completing this project, I gained valuable insights and hands-on experience with several new tools and techniques. I learned how to leverage the YouTube Transcript API to fetch video transcripts, which involved understanding how to extract and manipulate video IDs from URLs. This project also enhanced my skills in integrating OpenAI's GPT-3.5-turbo model to summarize transcripts and generate responses based on user questions. I improved my Flask application development skills, particularly in managing routes and handling JSON data with the request and jsonify modules. Implementing CORS (Cross-Origin Resource Sharing) with Flask-CORS was another critical aspect, ensuring my application could interact with resources from different origins. Through this project, I solidified my understanding of web scraping, API integration, and secure application development practices, which collectively broadened my technical expertise.
+          </p>
+        </div>
+      </div>
+
+      <!-- Michigan Tech Week Hackathon Project -->
+      <div class="work">
+        <video width="640" height="360" controls playsinline>
+          <source src="images/hackathon_vid.mp4" type="video/mp4" />
+          Your browser does not support the video tag. You can
+          <a href="images/hackathon_vid.mp4">download the video here</a>.
+        </video>
+        <div>
+          <h3>Michigan Tech Week Hackathon Project</h3>
+          <p>
+            Here is a video of my hackathon project during Michigan Tech Week. I was the team lead for our project and I was the one who created the back end that you are seeing here. My team and I were given 10 days to try and come up with an idea to 'fix' a problem that Michigan is currently facing. The Michigan-based problem that we decided to tackle was the decreasing rates of physical activity in our state. Our idea was to create an easy-to-use and fun social way to create and plan local phycial activities/events. After making a social profile you are able to create or join local events such as a morning jog which your neighbor might have scheduled for 10 am tomorrow. Our final goal is to make it so that you are able to see the other profiles that have joined said event in your area and have a social web where you can see what all of your friends social plans are.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Image Viewer Modal (fullscreen-style image viewing) -->
+  <div id="img-modal" aria-hidden="true">
+    <button class="modal-btn close" aria-label="Close (Esc)">&times;</button>
+    <button class="modal-btn fs" aria-label="Enter Fullscreen">
+      <i class="fa-solid fa-expand"></i>
+    </button>
+    <div class="img-stage">
+      <img id="img-modal-content" alt="Expanded screenshot" />
+    </div>
+  </div>
+
+  <!-- JavaScript Section -->
+  <script>
+    // Tabs
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(event, tabname) {
+      for (var tablink of tablinks) tablink.classList.remove("active-link");
+      for (var tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
+      event.currentTarget.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
+    }
+  </script>
+
+  <script>
+    // Mobile menu
+    var sidemenu = document.getElementById("sidemenu");
+    function openmenu() { sidemenu.style.right = "0"; }
+    function closemenu() { sidemenu.style.right = "-200px"; }
+  </script>
+
+  <script>
+    // ---------- Image fullscreen viewer ----------
+    (function(){
+      const modal = document.getElementById('img-modal');
+      const modalImg = document.getElementById('img-modal-content');
+      const closeBtn = modal.querySelector('.modal-btn.close');
+      const fsBtn = modal.querySelector('.modal-btn.fs');
+
+      function openViewer(src) {
+        modalImg.src = src;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (modal.requestFullscreen) {
+          modal.requestFullscreen().catch(()=>{});
         }
-    </script>
+      }
 
-    <script>
-        // Mobile menu
-        var sidemenu = document.getElementById("sidemenu");
-        function openmenu() { sidemenu.style.right = "0"; }
-        function closemenu() { sidemenu.style.right = "-200px"; }
-    </script>
+      document.querySelectorAll('.gallery-4 .zoomable').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openViewer(img.src));
+      });
 
-    <script>
-        // ---------- Image fullscreen viewer ----------
-        (function(){
-            const modal = document.getElementById('img-modal');
-            const modalImg = document.getElementById('img-modal-content');
-            const closeBtn = modal.querySelector('.modal-btn.close');
-            const fsBtn = modal.querySelector('.modal-btn.fs');
+      function closeViewer() {
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+        document.body.style.overflow = '';
+        if (document.fullscreenElement === modal) {
+          document.exitFullscreen().catch(()=>{});
+        }
+      }
 
-            function openViewer(src) {
-                modalImg.src = src;
-                modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-                if (modal.requestFullscreen) {
-                    modal.requestFullscreen().catch(()=>{});
-                }
-            }
+      closeBtn.addEventListener('click', closeViewer);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeViewer(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeViewer(); });
 
-            document.querySelectorAll('.gallery-4 .zoomable').forEach(img => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', () => openViewer(img.src));
-            });
-
-            function closeViewer() {
-                modal.setAttribute('aria-hidden', 'true');
-                modalImg.src = '';
-                document.body.style.overflow = '';
-                if (document.fullscreenElement === modal) {
-                    document.exitFullscreen().catch(()=>{});
-                }
-            }
-
-            closeBtn.addEventListener('click', closeViewer);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeViewer();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeViewer();
-            });
-
-            fsBtn.addEventListener('click', () => {
-                if (document.fullscreenElement === modal) {
-                    document.exitFullscreen().catch(()=>{});
-                } else if (modal.requestFullscreen) {
-                    modal.requestFullscreen().catch(()=>{});
-                }
-            });
-        })();
-    </script>
+      fsBtn.addEventListener('click', () => {
+        if (document.fullscreenElement === modal) {
+          document.exitFullscreen().catch(()=>{});
+        } else if (modal.requestFullscreen) {
+          modal.requestFullscreen().catch(()=>{});
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
