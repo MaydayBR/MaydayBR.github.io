@@ -89,60 +89,51 @@ re-rank), APIs (PubMed eUtils)</li>
                     <h3>Knomedic</h3>
                     <p>Knowmedic is a mobile app that helps people discover and understand new medical research. It pulls recent PubMed studies, applies semantic search and ranking, and lets users save, organize, and interact with articles. The stack includes React Native (Expo), Firebase (Auth, Firestore, Cloud Functions, Storage), and Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery) for ingestion, search, and scalable data pipelines.</p>
 
-                    <!-- NEW: requested subsections with bullet points -->
-                    <section class="km-section">
-                        <h4>Summary</h4>
-                        <ul>
-                            <li>Fetches recent PubMed studies and makes them easy to search, understand, and save.</li>
-                            <li>Hybrid search: keyword prefilter + embedding-based semantic relevance.</li>
-                            <li>Clean article screen with summaries, key points, and quick actions (save, like, comment).</li>
-                            <li>Social layer: public profiles, searchable usernames, bookmarks & folders.</li>
-                        </ul>
-                    </section>
 
-                    <section class="km-section">
-                        <h4>Features</h4>
-                        <ul>
-                            <li>Semantic search with basic filters (topic/date) and relevance re-ranking.</li>
-                            <li>Bookmarks & folders (create, move, rename) to organize reading.</li>
-                            <li>Unique-username reservation at sign-up; public profile pages & profile search.</li>
-                            <li>Engagement-driven “Hot New/Trending” tabs (score bumped by likes/comments/bookmarks).</li>
-                            <li>Account deletion via callable Cloud Function that recursively removes user data.</li>
-                        </ul>
-                    </section>
+                   <section class="km-section">
+                       <h4>Features</h4>
+                       <ul>
+                            <li>Bookmark system with custom folders to organize saved studies.</li>
+                            <li>Unique-username reservation at sign-up with public profile pages and searchable profiles (users choose public vs. private during signup).</li>
+                            <li><strong>Hot New Studies</strong> tab powered by the PubMed API and Google Pub/Sub, showcasing recently published research.</li>
+                            <li>Engagement-driven <strong>Trending</strong> tab where scores are dynamically boosted by likes and bookmarks.</li>
+                            <li>Secure account deletion via a callable Cloud Function that recursively removes all user data.</li>
+                            <li>Real-time updates using Firestore listeners for live feed changes (likes, comments, bookmarks).</li>
+                            <li>Profile editing with bios</li>
+                            <li>Firestore security rules enforcing per-user access and privacy controls.</li>
+                            <li>Integration with Firebase Authentication for email/password login.</li>
+                            <li>Serverless backend built on Google Cloud Functions, ensuring scalable and cost-efficient infrastructure.</li>
+                            <li>Scheduled tasks (Pub/Sub + Cloud Scheduler) to refresh feeds, prune old data, and keep “Hot New Studies” current.</li>
+                       </ul>
+                  </section>
 
-                    <section class="km-section">
-                        <h4>Stack</h4>
-                        <ul>
-                            <li><strong>Frontend:</strong> React Native (Expo/EAS), React Navigation, fetch-based API calls.</li>
-                            <li><strong>Firebase:</strong> Auth, Firestore (profiles, bookmarks, articles), Storage, Cloud Functions v2.</li>
-                            <li><strong>GCP:</strong> Pub/Sub (fan-out ingestion), Cloud Scheduler (cron), Cloud Run/Functions for workers, BigQuery for article text & embeddings.</li>
-                            <li><strong>Data:</strong> PubMed eUtils / PMIDs, OpenAI embeddings (IVF/HNSW vector indexes), hybrid (keyword + vector) retrieval.</li>
-                            <li><strong>Tooling:</strong> Git/GitHub, EAS builds, Xcode/Android Studio, GitHub Pages for Privacy/Terms.</li>
-                        </ul>
-                    </section>
+                  <section class="km-section">
+                    <h4>Stack</h4>
+                    <ul>
+                         <li><strong>Frontend:</strong> React Native (Expo/EAS) with React Navigation; fetch-based API calls and real-time Firestore listeners for dynamic updates.</li>
+                         <li><strong>Firebase:</strong> Authentication (email/password), Firestore (profiles, bookmarks, articles, engagement data), Storage for media uploads, and Cloud Functions v2 (callable + trigger-based).</li>
+                         <li><strong>Google Cloud Platform:</strong> Pub/Sub (fan-out ingestion), Cloud Scheduler (cron jobs), Cloud Run/Functions for background workers, BigQuery for article text, metadata, and embeddings.</li>
+                         <li><strong>Data:</strong> PubMed eUtils (baseline + daily PMIDs), custom ingestion pipelines, OpenAI embeddings stored in BigQuery with IVF/HNSW vector indexes; hybrid keyword + semantic (vector) retrieval.</li>
+                         <li><strong>Tooling & Deployment:</strong> Git/GitHub for version control, GitHub Pages for Privacy Policy & Terms, EAS builds for app distribution, Xcode & Android Studio for local testing/debugging.</li>
+                         <li><strong>Other:</strong> Firestore security rules for per-user data isolation, recursive user deletion workflows, and Pub/Sub-driven trending/“Hot New” study pipelines.</li>
+                    </ul>
+                  </section>
 
-                    <section class="km-section">
-                        <h4>What I Learned</h4>
-                        <ul>
-                            <li>Designing a Firestore data model (profiles, usernames collection, bookmarks & folders).</li>
-                            <li>Building reliable pipelines with Pub/Sub fan-out, idempotent workers, and backoff/retries.</li>
-                            <li>Trade-offs between keyword search and vector search (HNSW vs IVF) for cost/latency/recall.</li>
-                            <li>UX for long lists: virtualization, skeleton loaders, and empty/error states.</li>
-                            <li>Privacy compliance: account deletion that cascades through all user-owned data.</li>
-                        </ul>
-                    </section>
 
-                    <section class="km-section">
-                        <h4>My Plans for the Future</h4>
-                        <ul>
-                            <li>Finish full PubMed baseline + daily updates ingestion; add robust dedupe & re-ingest safety.</li>
-                            <li>Advanced filters (study type, MeSH tags, journal, year) and topic subscriptions with digests.</li>
-                            <li>Quality signals & bias checks; adjustable “explain like I’m new / researcher” summaries.</li>
-                            <li>Shared folders and collaboration; richer comments and follow/notify social graph.</li>
-                            <li>Ship TestFlight/Android beta and measure engagement, retention, and cost per active user.</li>
-                        </ul>
-                    </section>
+                   <section class="km-section">
+                       <h4>My Plans for the Future</h4>
+                       <ul>
+                            <li>Introduce advanced filters (e.g., study type, MeSH tags, journal, publication year) and allow topic subscriptions with personalized digests.</li>
+                            <li>Implement bias and quality checks, with automated warnings or reliability indicators for each study.</li>
+                            <li>Enable shared folders and collaboration features, including public folders that can be viewed or followed by all users.</li>
+                            <li>Expand the commenting system to include nested replies, voting (likes/dislikes), and engagement metrics — inspired by Reddit-style discussion threads.</li>
+                            <li>Enhance search with full support for vector-based semantic retrieval (BigQuery + embeddings) alongside keyword-based search.</li>
+                            <li>Develop an LLM-based assistant fine-tuned on the full corpus of biomedical literature, capable of answering questions and summarizing studies.</li>
+                            <li>Add mobile notifications for trending studies, topic updates, or collaborative activity.</li>
+                            <li>Explore partnerships with universities, research labs, and health organizations to validate and expand the platform’s impact.</li>
+                       </ul>
+                  </section>
+                   
                 </div>
             </div>
 
