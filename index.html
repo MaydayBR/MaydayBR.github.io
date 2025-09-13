@@ -84,9 +84,65 @@ re-rank), APIs (PubMed eUtils)</li>
                     <img src="images/Third_Pic_Knowmedic.png" alt="Knowmedic screenshot 3" class="zoomable">
                     <img src="images/Fourth_Pic_Knomedic.png" alt="Knowmedic screenshot 4" class="zoomable">
                 </div>
+
                 <div class="knomedic-text">
                     <h3>Knomedic</h3>
                     <p>Knowmedic is a mobile app that helps people discover and understand new medical research. It pulls recent PubMed studies, applies semantic search and ranking, and lets users save, organize, and interact with articles. The stack includes React Native (Expo), Firebase (Auth, Firestore, Cloud Functions, Storage), and Google Cloud (Pub/Sub, Cloud Scheduler, BigQuery) for ingestion, search, and scalable data pipelines.</p>
+
+                    <!-- NEW: requested subsections with bullet points -->
+                    <section class="km-section">
+                        <h4>Summary</h4>
+                        <ul>
+                            <li>Fetches recent PubMed studies and makes them easy to search, understand, and save.</li>
+                            <li>Hybrid search: keyword prefilter + embedding-based semantic relevance.</li>
+                            <li>Clean article screen with summaries, key points, and quick actions (save, like, comment).</li>
+                            <li>Social layer: public profiles, searchable usernames, bookmarks & folders.</li>
+                        </ul>
+                    </section>
+
+                    <section class="km-section">
+                        <h4>Features</h4>
+                        <ul>
+                            <li>Semantic search with basic filters (topic/date) and relevance re-ranking.</li>
+                            <li>Bookmarks & folders (create, move, rename) to organize reading.</li>
+                            <li>Unique-username reservation at sign-up; public profile pages & profile search.</li>
+                            <li>Engagement-driven “Hot New/Trending” tabs (score bumped by likes/comments/bookmarks).</li>
+                            <li>Account deletion via callable Cloud Function that recursively removes user data.</li>
+                        </ul>
+                    </section>
+
+                    <section class="km-section">
+                        <h4>Stack</h4>
+                        <ul>
+                            <li><strong>Frontend:</strong> React Native (Expo/EAS), React Navigation, fetch-based API calls.</li>
+                            <li><strong>Firebase:</strong> Auth, Firestore (profiles, bookmarks, articles), Storage, Cloud Functions v2.</li>
+                            <li><strong>GCP:</strong> Pub/Sub (fan-out ingestion), Cloud Scheduler (cron), Cloud Run/Functions for workers, BigQuery for article text & embeddings.</li>
+                            <li><strong>Data:</strong> PubMed eUtils / PMIDs, OpenAI embeddings (IVF/HNSW vector indexes), hybrid (keyword + vector) retrieval.</li>
+                            <li><strong>Tooling:</strong> Git/GitHub, EAS builds, Xcode/Android Studio, GitHub Pages for Privacy/Terms.</li>
+                        </ul>
+                    </section>
+
+                    <section class="km-section">
+                        <h4>What I Learned</h4>
+                        <ul>
+                            <li>Designing a Firestore data model (profiles, usernames collection, bookmarks & folders).</li>
+                            <li>Building reliable pipelines with Pub/Sub fan-out, idempotent workers, and backoff/retries.</li>
+                            <li>Trade-offs between keyword search and vector search (HNSW vs IVF) for cost/latency/recall.</li>
+                            <li>UX for long lists: virtualization, skeleton loaders, and empty/error states.</li>
+                            <li>Privacy compliance: account deletion that cascades through all user-owned data.</li>
+                        </ul>
+                    </section>
+
+                    <section class="km-section">
+                        <h4>My Plans for the Future</h4>
+                        <ul>
+                            <li>Finish full PubMed baseline + daily updates ingestion; add robust dedupe & re-ingest safety.</li>
+                            <li>Advanced filters (study type, MeSH tags, journal, year) and topic subscriptions with digests.</li>
+                            <li>Quality signals & bias checks; adjustable “explain like I’m new / researcher” summaries.</li>
+                            <li>Shared folders and collaboration; richer comments and follow/notify social graph.</li>
+                            <li>Ship TestFlight/Android beta and measure engagement, retention, and cost per active user.</li>
+                        </ul>
+                    </section>
                 </div>
             </div>
 
